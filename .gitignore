@@ -47,3 +47,8 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# data files, other people's scripts
+*.sav
+*.sps
+
