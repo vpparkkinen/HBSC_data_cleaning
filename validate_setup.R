@@ -32,6 +32,7 @@ get_var_info <- function(x, varname){
   is_unbounded_num <- inherits(x, "numeric")
   val_labels <- attr(x, "labels")
   allowed_vals <- if (is_char) NA else unname(val_labels)
+  # no var is actually allowed to be negative
   alval_min <- if (is_unbounded_num) 0 else min(allowed_vals)
   alval_max <- if (is_unbounded_num) Inf else max(allowed_vals)
   type = if (inherits(x, "double")) "double" else if (is_unbounded_num) "numeric" else "character"
