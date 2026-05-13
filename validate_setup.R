@@ -11,6 +11,7 @@ library(haven)
 library(data.table)
 #library(sjPlot)
 library(tinytable)
+library(pointblank)
 
 # all variable names from 2026 protocol
 doc_vars <- c(
@@ -60,6 +61,8 @@ doc_vars <- c(
   "contraceptcondom",
   "contraceptpill"
   )
+
+
 
 adm_id_vars <- c("id1", "id2", "id3", "id4", "month", "year", "adm")
 
@@ -122,8 +125,8 @@ get_var_info <- function(x, varname){
 
 # get legal ranges, classes for all vars in blank reference data
 ranges <- lapply(names(ref26), 
-                 \(x) get_var_info(ref26[[x]], varname = x)) |> rbindlist()
-
+                 \(x) get_var_info(ref26[[x]], varname = x))
+ranges <- do.call(rbind, ranges)
 
 if (printout_ranges){
   tt(ranges,
