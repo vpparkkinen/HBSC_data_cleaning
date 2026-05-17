@@ -136,7 +136,18 @@ if (printout_ranges){
 }
 
 tdat <- read_sav("TEST_DATA_IN.sav")
+
+tdat2 <- zap_labels(tdat)
+
+look_for(tdat)
+generate_dictionary(tdat)
 td_cn <- colnames(tdat)
+# 
+# for (n in td_cn){
+#   if (inherits(tdat[[n]], "double")) class(tdat[[n]]) <- "numeric"
+# }
+
+write_sav(tdat, "TI_R_roundtrip.sav")
 
 # varnames are unique?
 length(td_cn) == length(unique(td_cn))
@@ -168,7 +179,7 @@ iswhole <- function(x, tol = .Machine$double.eps^0.5){
 
 
 
-iswhole(7.00000001)
+
 
 # 
 # 
